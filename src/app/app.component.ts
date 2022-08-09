@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {single} from './data';
 import {TodoService} from "./todo.service";
 
@@ -8,7 +8,7 @@ import {TodoService} from "./todo.service";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'testngx';
   single: any[] = [];
   view: [number, number] = [700, 400];
@@ -27,7 +27,15 @@ export class AppComponent {
   };
 
   constructor(private todoService: TodoService) {
-    Object.assign(this, {single})
+    //Object.assign(this, {single})
+  }
+
+  ngOnInit(): void {
+        this.todoService.getstats().subscribe({
+          next: value => {
+            this.single = value;
+          }
+        })
   }
 
   onSelect(event: any[]) {
