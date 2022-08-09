@@ -25,6 +25,9 @@ export class AppComponent implements OnInit {
   colorScheme = {
     domain: ['red', 'blue']
   };
+  showLabels = true;
+  isDoughnut = false;
+  explodeSlices = true;
 
   constructor(private todoService: TodoService) {
     //Object.assign(this, {single})
